@@ -1,0 +1,36 @@
+{
+  "courses": [
+    {
+      "id": "1",
+      "title": "postman",
+      "description": "full postman course from zero to hero"
+    },
+    {
+      "id": "2",
+      "title": "Appuim",
+      "description": "full Appuim course from zero to hero"
+    },
+    {
+      "id": "3",
+      "title": "selenuim",
+      "description": "full selenuim course from zero to hero"
+    },
+    {
+      "title": "Cypress",
+      "description": "full Cypress course from zero to hero",
+      "id": "FZP8Rr6"
+    },
+    {
+      "title": "Java",
+      "description": "full Java course from zero to hero",
+      "id": "59wh9O-"
+    }
+  ],
+  "users": [
+    {
+      "email": "fatma@mail.com",
+      "password": "$2a$10$GOxmKW7lopUYNWGt3KokCeAj/Sa3jROFSYIms/sqgez4cGxRAt5j2",
+      "id": 1
+    }
+  ]
+}

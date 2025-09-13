@@ -1,0 +1,31 @@
+{
+	"id": "d37ef826-8f14-40d4-938c-5597efa1c436",
+	"name": "Courses",
+	"values": [
+		{
+			"key": "url",
+			"value": "http://localhost:3000",
+			"type": "default",
+			"description": {
+				"content": "",
+				"type": "text/plain"
+			},
+			"enabled": true
+		},
+		{
+			"key": "CourseId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "AccessToken",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2025-09-01T14:01:02.330Z",
+	"_postman_exported_using": "Postman/11.60.4"
+}
