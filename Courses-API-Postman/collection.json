@@ -8,406 +8,439 @@
 	},
 	"item": [
 		{
-			"name": "SignUp",
-			"event": [
+			"name": "Positive Test",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 201\", function () {\r",
-							"    pm.response.to.have.status(201);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"fatma@mail.com\",\r\n  \"password\": \"bestPassw0rd\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/SignUp",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"SignUp"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "LogIn",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var JsonFile = pm.response.json();\r",
-							"var AccessToken = JsonFile.accessToken\r",
-							"pm.environment.set(\"AccessToken\", AccessToken);\r",
-							"\r",
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "noauth"
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n  \"email\": \"fatma@mail.com\",\r\n  \"password\": \"bestPassw0rd\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/login",
-					"host": [
-						"{{url}}"
-					],
-					"path": [
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create New Course",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var JsonFile = pm.response.json()\r",
-							"var CourseId =JsonFile.id \r",
-							"pm.environment.set(\"CourseId\", CourseId);\r",
-							"\r",
-							"pm.test(\"Check if the status equal 201\", function () {\r",
-							"    pm.response.to.have.status(201);\r",
-							"});\r",
-							"\r",
-							"\r",
-							"\r",
-							"\r",
-							""
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "LogIn",
+					"event": [
 						{
-							"key": "token",
-							"value": "{{AccessToken}}",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var JsonFile = pm.response.json();\r",
+									"var AccessToken = JsonFile.accessToken\r",
+									"pm.environment.set(\"AccessToken\", AccessToken);\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 700ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    pm.expect(JsonFile.user.email).to.eql(\"fatma@gmail.com\");\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"Cypress\",\r\n    \"description\": \"full Cypress course from zero to hero\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/660/courses",
-					"host": [
-						"{{url}}"
 					],
-					"path": [
-						"660",
-						"courses"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Course",
-			"event": [
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"fatma@gmail.com\",\r\n  \"password\": \"bestPassw0rd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Check if the status equal 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "Create New Course",
+					"event": [
 						{
-							"key": "token",
-							"value": "{{AccessToken}}",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var JsonFile = pm.response.json()\r",
+									"var CourseId =JsonFile.id \r",
+									"pm.environment.set(\"CourseId\", CourseId);\r",
+									"\r",
+									"pm.test(\"Check if the status equal 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    pm.expect(JsonFile.title).to.eql(\"Cypress\");\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{url}}/660/courses/{{CourseId}}",
-					"host": [
-						"{{url}}"
 					],
-					"path": [
-						"660",
-						"courses",
-						"{{CourseId}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update Course",
-			"event": [
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Cypress\",\r\n    \"description\": \"full Cypress course from zero to hero\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/660/courses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"660",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "Get Course",
+					"event": [
 						{
-							"key": "token",
-							"value": "{{AccessToken}}",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var JsonFile = pm.response.json();\r",
+									"pm.test(\"Check if the status equal 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    pm.expect(JsonFile.title).to.eql(\"Cypress\");\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"Java\",\r\n    \"description\": \"full Java course from zero to hero\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/660/courses/{{CourseId}}",
-					"host": [
-						"{{url}}"
 					],
-					"path": [
-						"660",
-						"courses",
-						"{{CourseId}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get all Courses",
-			"event": [
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/660/courses/{{CourseId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"660",
+								"courses",
+								"{{CourseId}}"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Check if the status equal 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "Update Course",
+					"event": [
 						{
-							"key": "token",
-							"value": "{{AccessToken}}",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var JsonFile = pm.response.json();\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    pm.expect(JsonFile.title).to.eql(\"Java\");\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{url}}/660/courses",
-					"host": [
-						"{{url}}"
 					],
-					"path": [
-						"660",
-						"courses"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete Course",
-			"event": [
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Java\",\r\n    \"description\": \"full Java course from zero to hero\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/660/courses/{{CourseId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"660",
+								"courses",
+								"{{CourseId}}"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Check if the status equal 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "Get all Courses",
+					"event": [
 						{
-							"key": "token",
-							"value": "{{AccessToken}}",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var JsonFile = pm.response.json();\r",
+									"pm.test(\"Check if the status equal 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"first course\", function () {\r",
+									"    pm.expect(JsonFile[0].title).to.eql(\"postman\");\r",
+									"});\r",
+									"pm.test(\"second course\", function () {\r",
+									"    pm.expect(JsonFile[1].title).to.eql(\"Appuim\");\r",
+									"});\r",
+									"pm.test(\"third course\", function () {\r",
+									"    pm.expect(JsonFile[2].title).to.eql(\"selenuim\");\r",
+									"});\r",
+									"pm.test(\"fourth course\", function () {\r",
+									"    pm.expect(JsonFile[3].title).to.eql(\"Cypress\");\r",
+									"});\r",
+									"pm.test(\"fifth course\", function () {\r",
+									"    pm.expect(JsonFile[4].title).to.eql(\"Java\");\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
-				"url": {
-					"raw": "{{url}}/660/courses/{{CourseId}}",
-					"host": [
-						"{{url}}"
 					],
-					"path": [
-						"660",
-						"courses",
-						"{{CourseId}}"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get after delete",
-			"event": [
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/660/courses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"660",
+								"courses"
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Check if the status equal 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});"
-						],
-						"type": "text/javascript",
-						"packages": {}
-					}
-				}
-			],
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
+					"name": "Delete Course",
+					"event": [
 						{
-							"key": "token",
-							"value": "{{AccessToken}}",
-							"type": "string"
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check if the status equal 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
 						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{url}}/660/courses",
-					"host": [
-						"{{url}}"
 					],
-					"path": [
-						"660",
-						"courses"
-					]
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/660/courses/{{CourseId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"660",
+								"courses",
+								"{{CourseId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get after delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Check if the status equal 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/660/courses",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"660",
+								"courses"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		}
 	]
 }
