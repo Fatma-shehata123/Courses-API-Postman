@@ -29,7 +29,7 @@ The API is tested using **Postman**, with a comprehensive collection of test cas
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/courses-api.git
+   git clone https://github.com/Fatma-shehata123/courses-api.git
    cd courses-api
    ```
 2. Install dependencies:
